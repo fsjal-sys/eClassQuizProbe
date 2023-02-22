@@ -1,0 +1,405 @@
+<html>
+	<head>
+		<link rel="shortcut icon" href="https://eclass.yorku.ca/theme/image.php/edyucate/theme/1675851206/favicon">
+		<title>Senate Guidelines on Academic Honesty Quiz 1</title>
+		<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js">
+		</script>
+		<script>
+let inactiveTimes = 0;
+$(window).hover(function(event) {
+    if (event.fromElement) {
+			} else {
+			inactiveTimes = inactiveTimes + 1;
+			console.log("Amount of times user has left the page: " + (inactiveTimes-1));
+		}
+});
+		</script>
+		<style>
+* {
+	margin: 0px;padding:0px;
+	font-family: Arial, Helvetica, sans-serif;
+}
+body {
+	background-color: white;
+}
+#header {
+	display: flex;
+	width: 100%;
+	background-color: white;
+	height: 50px;
+	display: flex;
+	justify-content: space-between;
+	box-shadow: 0 2px 4px rgb(0 0 0 / 8%);
+}
+#eClassTitle {
+	margin-left: 15px;
+	color: #cc2030;
+	font-weight: bold;
+	font-size: 18px;
+	margin-top: auto;
+	margin-bottom: auto;
+}
+#eClassUserInfo {
+	display: flex;
+	margin-top: auto;
+	margin-bottom: auto;
+}
+#eClassUserInfo * {
+	margin: 3px;
+}
+#contentContainer {
+	margin: 20px;
+	width: 70%;
+}
+#title {
+	border: 1px solid lightgrey;
+	height: 95px;
+	width: 98%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	margin: 20px;
+}
+#questionContainer {
+	border: 1px solid lightgrey;
+	width: 99%;
+}
+#questionContainer * {
+	margin: 10px;
+}
+.question {
+	display: flex;
+}
+.questionIndex {
+	background-color: #F8F9FA;
+	border: 1px solid lightgrey;
+	width: 110px;
+	height: 150px;
+	font-size: 12px;
+}
+.questionIndexNumber {
+	font-size: 19px;
+}
+.flagQuestion {
+	color: #cc2030;
+	text-decoration: none;
+}
+.questionContent {
+	background-color: #E7F3F5;
+	padding: 10px;
+	width: 99%;
+}
+.answerContainer {
+	padding-left: 120px;
+	display: none;
+}
+.answerContent {
+	background-color: #FCEFDC;
+	color: #A76839;
+	width: calc(99%-10px);
+	height: 100px;
+	padding: 10px;
+}
+.answerContent * {
+	
+}
+#buttonContainer {
+	display: flex;
+}
+#buttonContainer button {
+	background-color: #003D74;
+	color: white;
+	width: 140px;
+	height: 40px;
+	font-size: 15px;
+	border: 0.5px;
+	margin-left: auto;
+}
+#container {
+	display: flex;
+	width: 100%;
+		justify-content: space-between;
+}
+#questionMenuContainer {
+	border: 1px solid lightgrey;
+	margin-right: 20px;
+	margin-top: 20px;
+	width: 30%;
+	height: 200px;
+}
+#questionMenuContainer p {
+	margin: 10px;
+}
+#questionMenuContainer a {
+	margin: 10px;
+	color: #cc2030;
+	text-decoration: none;
+}
+#questionMenuItems {
+	display: flex;
+	margin: 10px;
+}
+.questionMenuItem {
+	border: 2px solid black;
+	margin: 3px;
+	height: 60px;
+}
+.questionMenuItem a {
+	color: #cc2030;
+	text-decoration: none;
+}
+.menuIndicator {
+	height:20px;
+	border:1px solid black;
+	visibility: hidden;
+}
+#resultsMenuContainer {
+	border: 1px solid lightgrey;
+	margin-top: 80px;
+	width: 99%;
+	height: 120px;
+	visibility: hidden;
+	display: flex;
+	flex-direction: column;
+}
+.resultsRow {
+	display: flex;
+	height: 20%;
+}
+.resultsColumn1 {
+	width: 30%;
+	border: 0.5px solid lightgrey;
+	background-color: #F0F0F0;
+	font-size: 11px;
+	padding-bottom: 2px;
+	display: flex;
+	justify-content: right;
+	align-items: center;
+}
+.resultsColumn1 p {
+	font-weight: bold;
+}
+.resultsColumn2 {
+	width: 99%;
+	border: 0.5px solid lightgrey;
+	background-color: #FAFAFA;
+	text-align: left;
+	font-size: 11px;
+	align-items: center;
+}
+#popup {
+	top: 0%;
+	background-color: white;
+	height:100%;
+	width: 100%;
+	position: absolute;
+	position: fixed;
+	display: flex;
+	font-size: 20px;
+	color: #cc2030;
+	align-items: center;
+	justify-content: center;
+	border: 5px solid lightgrey;
+	visibility: hidden;
+}
+.marker {
+	width: 99%;
+	height: 5px;
+}
+		</style>
+	</head>
+
+	<body>
+		<div id="header">
+			<p id="eClassTitle">eClass</p>
+			<div id="eClassUserInfo">
+				<p style="margin-top:auto;margin-bottom:auto;color:#cc2030">eClass User</p>
+				<img style="border-radius:100%" src="./resources/profile.png">
+			</div>
+		</div>
+
+		<div id="popup">
+			<p>Your quiz is being evaluated. Please wait a moment ...  </p>
+			<img src="./resources/loading.gif" style="width:30px;height:30px;margin-left:10px;">
+		</div>
+
+		<div id="title">
+			<p style="margin:20px;font-size:35px">Senate Guidelines on Academic Honesty Quiz 1</p>
+		</div>
+		<div id="container">
+		<div id="contentContainer">
+			<div id="questionContainer">
+				<div class="question">
+					<div class="questionIndex">
+						<p>Question<span class="questionIndexNumber">1</span></p>
+						<p>Not yet answered</p>
+						<p>Marked out of 1.00</p>
+						<a href="#" class="flagQuestion">Flag question</a>
+					</div>
+					<div class="questionContent">
+						<p>Which of the following is not considered a form of plagiarism according to the Senate Guidelines on Academic Honesty?</p>
+						<p><input id="1a" type="radio" name="question1">a.     Paraphrasing someone else's work without proper acknowledgement</p>
+						<p><input id="1b" type="radio" name="question1">b.     Presenting someone else's work as your own</p>
+						<p><input id="1c" type="radio" name="question1">c.     Using someone else's ideas without proper acknowledgement</p>
+						<p><input id="1d" type="radio" name="question1">d.     Properly citing a source but including a significant portion of the original text without quotation marks</p>
+					<div class="marker" id="marker1"></div>
+					</div>
+				</div>
+				<div class="answerContainer">
+				<div class="answerContent">
+					<p id="answer1">fjsaklfjsdklfjsdklfjsdklfjsdklfj</p>
+					<p>Answer: d. Properly citing a source but including a significant portion of the original text without quotation marks is still considered plagiarism, even if the source is properly acknowledged.</p>
+				</div>
+				</div>
+				<div class="question">
+					<div class="questionIndex">
+						<p>Question<span class="questionIndexNumber">2</span></p>
+						<p>Not yet answered</p>
+						<p>Marked out of 1.00</p>
+						<a href="#" class="flagQuestion">Flag question</a>
+					</div>
+					<div class="questionContent">
+						<p>Which of the following is considered impersonation in academic work according to the Senate Guidelines on Academic Honesty?</p>
+						<p><input id="2a" type="radio" name="question2">a.     Having someone impersonate oneself in class or an exam</p>
+						<p><input id="2b" type="radio" name="question2">b.     Representing someone else's ideas as one's own</p>
+						<p><input id="2c" type="radio" name="question2">c.     Using someone else's work without proper acknowledgement</p>
+						<p><input id="2d" type="radio" name="question2">d.     Falsifying or fabricating information to deceive readers</p>
+					<div class="marker" id="marker2"></div>
+					</div>
+				</div>
+				<div class="answerContainer">
+				<div class="answerContent">
+					<p id="answer2"></p>
+					<p>Answer: a. Having someone impersonate oneself in class or an exam is considered impersonation in academic work.</p>
+				</div>
+				</div>
+				<div class="question">
+					<div class="questionIndex">
+						<p>Question<span class="questionIndexNumber">3</span></p>
+						<p>Not yet answered</p>
+						<p>Marked out of 1.00</p>
+						<a href="#" class="flagQuestion">Flag question</a>
+					</div>
+					<div class="questionContent">
+						<p>What is the maximum penalty for a student found guilty of academic misconduct under the Senate Policy and Guidelines on Academic Honesty?</p>
+						<p><input id="3a" type="radio" name="question3">a.     A warning</p>
+						<p><input id="3b" type="radio" name="question3">b.     A failing grade for the assignment</p>
+						<p><input id="3c" type="radio" name="question3">c.     Suspension from the University</p>
+						<p><input id="3d" type="radio" name="question3">d.     Expulsion from the University</p>
+						<div class="marker" id="marker3"></div>
+					</div>
+				</div>
+				<div class="answerContainer">
+				<div class="answerContent">
+					<p id="answer3"></p>
+					<p>Answer: d. Expulsion from the University is the maximum penalty that can be imposed on a student found guilty of academic misconduct.</p>
+				</div>
+				</div>
+				<div class="question">
+					<div class="questionIndex">
+						<p>Question<span class="questionIndexNumber">4</span></p>
+						<p>Not yet answered</p>
+						<p>Marked out of 1.00</p>
+						<a href="#" class="flagQuestion"> Flag question</a>
+					</div>
+					<div class="questionContent">
+						<p>Which of the following is not considered a defense against a charge of academic misconduct?</p>
+						<p><input id="4a" type="radio" name="question4">a.     Lack of intent to deceive</p>
+						<p><input id="4b" type="radio" name="question4">b.     Lack of familiarity with the policy and guidelines</p>
+						<p><input id="4c" type="radio" name="question4">c.     Being a first-time offender</p>
+						<p><input id="4d" type="radio" name="question4">d.     Being a well-known scholar in the field</p>
+						<div class="marker" id="marker4"></div>
+					</div>
+				</div>
+				<div class="answerContainer">
+				<div class="answerContent">
+					<p id="answer4"></p>
+					<p>Answer: d. Being a well-known scholar in the field is not considered a defense against a charge of academic misconduct.</p>
+				</div>
+				</div>
+				<div class="question">
+					<div class="questionIndex">
+						<p>Question<span class="questionIndexNumber">5</span></p>
+						<p>Not yet answered</p>
+						<p>Marked out of 1.00</p>
+						<a href="#" class="flagQuestion">Flag question</a>
+					</div>
+					<div class="questionContent">
+						<p>What is the definition of cheating according to the Senate Guidelines on Academic Honesty?</p>
+						<p><input id="5a" type="radio" name="question5">a.     Attempting to gain an improper advantage in an academic evaluation</p>
+						<p><input id="5b" type="radio" name="question5">b.     Copying another person's work</p>
+						<p><input id="5c" type="radio" name="question5">c.     Submitting work done for one class for another class without prior consent</p>
+						<p><input id="5d" type="radio" name="question5">d.     All of the above</p>
+						<div class="marker" id="marker5"></div>
+					</div>
+				</div>
+				<div class="answerContainer">
+				<div class="answerContent">
+					<p id="answer5"></p>
+					<p>Answer: a. Attempting to gain an improper advantage in an academic evaluation is the definition of cheating according to the Senate Guidelines on Academic Honesty.</p>
+				</div>
+				</div>
+				<div id="buttonContainer">
+					<button id="finishButton"><a style="color:white;text-decoration:none;" href="#">Finish attempt ...</a></button>
+				</div>
+			</div>
+		</div>
+		<div id="questionMenuContainer">
+			<p style="font-size:24px">Quiz navigation</p>
+			<div id="questionMenuItems">
+				<div class="questionMenuItem">
+					<a href="#"><p>1</p></a>
+					<div class="menuIndicator" id="menuIndicator1">
+					</div>
+				</div>
+				<div class="questionMenuItem">
+					<a href="#"><p>2</p></a>
+					<div class="menuIndicator" id="menuIndicator2">
+					</div>
+				</div>
+				<div class="questionMenuItem">
+					<a href="#"><p>3</p></a>
+					<div class="menuIndicator" id="menuIndicator3">
+					</div>
+				</div>
+				<div class="questionMenuItem">
+					<a href="#"><p>4</p></a>
+					<div class="menuIndicator" id="menuIndicator4">
+					</div>
+				</div>
+				<div class="questionMenuItem">
+					<a href="#"><p>5</p></a>
+					<div class="menuIndicator" id="menuIndicator5">
+					</div>
+				</div>
+			</div>
+			<a id="finishLink" href="#">Finish attempt ...</a>
+			<div id="resultsMenuContainer">
+				<div class="resultsRow">
+					<div class="resultsColumn1"><p>Started on</p></div>
+				<div class="resultsColumn2" id="startedDate"></div>
+				</div>
+				<div class="resultsRow">
+					<div class="resultsColumn1"><p>State</p></div>
+				<div class="resultsColumn2" id="state"></div>
+				</div>
+				<div class="resultsRow">
+					<div class="resultsColumn1"><p>Time taken</p></div>
+				<div class="resultsColumn2" id="timeTaken"></div>
+				</div>
+				<div class="resultsRow">
+					<div class="resultsColumn1"><p>Marks</p></div>
+				<div class="resultsColumn2" id="marks"></div>
+				</div>
+				<div class="resultsRow">
+					<div class="resultsColumn1"><p>Grade</p></div>
+				<div class="resultsColumn2" id="grade"></div>
+				</div>
+			</div>
+		</div>
+		</div>
+
+		<script src="script.js">
+		</script>	
+	</body>
+</html>
